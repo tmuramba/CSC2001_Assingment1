@@ -28,19 +28,15 @@ public class PlaceNameArray {
 
     public Data findElement(ArrayList<ArrayList<String>> nestedList, String target) {
         int count = 0;
+
         for (ArrayList<String> innerList : nestedList) {
-            System.out.println(innerList);
-            System.exit(0);
-            while (count < nestedList.size()){
-                if (innerList.get(1).compareTo(target) == 0) {
-                    Data data = new Data(true,count,innerList);
-                    return data; // Element found
-                }
-                count++;
+            if (innerList.get(1).equals(target)) {
+                return new Data(true, count, innerList);
             }
+            count++;
         }
-        Data data= new Data(false,count, nestedList);
-        return  data;// Element not found after checking all lists
+
+        return new Data(false, count, null);
     }
 
     public void readCSV(){
