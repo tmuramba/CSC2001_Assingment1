@@ -7,22 +7,40 @@ public class PlaceNameArray {
     
     String DataPath;
     public Integer n;
-    private ArrayList<ArrayList<String>> data = new ArrayList<>();
+    private ArrayList<ArrayList<String>> records = new ArrayList<>();
     
     PlaceNameArray(String Path, Integer n){
         this.DataPath = Path;
         this.n = n;
     }
 
-    public static boolean findElement(ArrayList<ArrayList<String>> nestedList, String target) {
+    public class Data{
+        Boolean found;
+        int count;
+        ArrayList record;
+
+        Data(Boolean found, int count, ArrayList record){
+            this.found = found;
+            this.count = count;
+            this.record = record;
+        }
+    }
+
+    public Data findElement(ArrayList<ArrayList<String>> nestedList, String target) {
+        int count = 0;
         for (ArrayList<String> innerList : nestedList) {
-            for (String element : innerList) {
-                if (element.equals(target)) {
-                    return true; // Element found
+            System.out.println(innerList);
+            System.exit(0);
+            while (count < nestedList.size()){
+                if (innerList.get(1).compareTo(target) == 0) {
+                    Data data = new Data(true,count,innerList);
+                    return data; // Element found
                 }
+                count++;
             }
         }
-        return false; // Element not found after checking all lists
+        Data data= new Data(false,count, nestedList);
+        return  data;// Element not found after checking all lists
     }
 
     public void readCSV(){
@@ -37,13 +55,13 @@ public class PlaceNameArray {
                     }
                     line = br.readLine();
                     String[] parts = line.split(",");
-                    if(data.isEmpty()) {
+                    if(records.isEmpty()) {
                         ArrayList<String> row = new ArrayList<>(Arrays.asList(parts));
-                        data.add(row);
+                        records.add(row);
                     }else {
-                        if(findElement(data, parts[1]) == false){
+                        if(findElement(records, parts[1]).found == false){
                             ArrayList<String> row = new ArrayList<>(Arrays.asList(parts));
-                            data.add(row);
+                            records.add(row);
                         }
 
                     }
@@ -56,13 +74,13 @@ public class PlaceNameArray {
                 }
                 while ((line = br.readLine()) != null) {
                     String[] parts = line.split(",");
-                    if(data.isEmpty()) {
+                    if(records.isEmpty()) {
                         ArrayList<String> row = new ArrayList<>(Arrays.asList(parts));
-                        data.add(row);
+                        records.add(row);
                     }else {
-                        if(findElement(data, parts[1]) == false){
+                        if(findElement(records, parts[1]).found == false){
                             ArrayList<String> row = new ArrayList<>(Arrays.asList(parts));
-                            data.add(row);
+                            records.add(row);
                         }
 
                     }
@@ -76,7 +94,7 @@ public class PlaceNameArray {
 
     // Getter for data
     public int getData() {
-        return data.size();
+        return records.size();
     }
 
 }
