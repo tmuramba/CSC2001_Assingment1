@@ -17,12 +17,12 @@ public class PlaceNameArray {
     public class Data{
         Boolean found;
         int count;
-        ArrayList record;
+        PlaceNameEntry entry;
 
-        Data(Boolean found, int count, ArrayList record){
+        Data(Boolean found, int count, PlaceNameEntry entry){
             this.found = found;
             this.count = count;
-            this.record = record;
+            this.entry = entry;
         }
     }
 
@@ -31,7 +31,8 @@ public class PlaceNameArray {
 
         for (ArrayList<String> innerList : nestedList) {
             if (innerList.get(1).equals(target)) {
-                return new Data(true, count, innerList);
+                PlaceNameEntry entry = new PlaceNameEntry(Integer.parseInt(innerList.get(0)),innerList.get(1),innerList.get(2),Integer.parseInt(innerList.get(3)));
+                return new Data(true, count, entry);
             }
             count++;
         }
@@ -87,6 +88,20 @@ public class PlaceNameArray {
             e.printStackTrace();
         }
     }
+
+    public void findPlaceName(String placename){
+        Data record = findElement(records,placename);
+        if(record.found){
+            System.out.println("Place name found");
+            System.out.println("Id: " + Integer.toString(record.entry.getId()) + " Place Name: " + record.entry.getPlacename() + " Province: " + record.entry.getProvince() + " Population: " + Integer.toString(record.entry.getPopulation()));
+        }else {
+            System.out.println("Placename not found");
+        }
+
+    }
+
+
+
 
     // Getter for data
     public int getData() {
