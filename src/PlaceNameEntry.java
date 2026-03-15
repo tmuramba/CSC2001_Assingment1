@@ -3,11 +3,13 @@ public class PlaceNameEntry {
     private String placename;
     private String province;
     private int population;
-    PlaceNameEntry(int Id, String placename, String province,int population){
+    private String municipality;
+    PlaceNameEntry(int Id, String placename,String municipality, String province,int population){
         this.Id = Id;
         this.placename = placename;
         this.population = population;
         this.province = province;
+        this.municipality = municipality;
     }
 
     public int getId(){
@@ -22,4 +24,5 @@ public class PlaceNameEntry {
     public int getPopulation(){
         return population;
     }
+    public String getMunicipality(){return municipality;}
 }

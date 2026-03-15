@@ -18,8 +18,8 @@ public class PlaceSearchArray {
                        System.out.println("Thank you Goodbye :) ");
                        System.exit(0);
                    }else {
+                       String[] path_n = path.split(" ");
                        try {
-                           String[] path_n = path.split(" ");
                            placeNameArray = new PlaceNameArray(path_n[0], Integer.parseInt(path_n[1]));
                            placeNameArray.readCSV();
                            System.out.println("Load sucesfull");
@@ -30,7 +30,7 @@ public class PlaceSearchArray {
                                    System.out.println("Thank you bye :) ");
                                    System.exit(0);
                                }else {
-                                   placeNameArray.findPlaceName(placeName);
+                                   placeNameArray.findPlaceName(placeName.trim());
                                }
 
                            }
