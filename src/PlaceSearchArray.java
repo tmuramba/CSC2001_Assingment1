@@ -6,19 +6,46 @@ public class PlaceSearchArray {
         PlaceNameArray placeNameArray;
         Scanner sc = new Scanner(System.in);
         while (true){
-            System.out.println("Welcome");
-            System.out.print("Please enter the path of the csv file you wish to load and the number of records you wish to load: ");
-            String read = sc.nextLine();
-            String[] path_n = read.split(" ");
-            try {
-                placeNameArray = new PlaceNameArray(path_n[0], Integer.parseInt(path_n[1]));
-                System.out.println("Please enter the place name you wish to find?");
-                String placename = sc.nextLine();
+           System.out.println("Welcome please choose one of the following options:");
+           System.out.println("1. load data records");
+           System.out.println("2. Exit");
+           String input = sc.nextLine();
+           if(Integer.parseInt(input.trim()) == 1){
+               while (true) {
+                   System.out.println("Please enter file path of records and number of records to load or type exit to leave:");
+                   String path = sc.nextLine();
+                   if(path.equalsIgnoreCase("exit")){
+                       System.out.println("Thank you Goodbye :) ");
+                       System.exit(0);
+                   }else {
+                       try {
+                           String[] path_n = path.split(" ");
+                           placeNameArray = new PlaceNameArray(path_n[0], Integer.parseInt(path_n[1]));
+                           placeNameArray.readCSV();
+                           System.out.println("Load sucesfull");
+                           while (true) {
+                               System.out.println("Please enter the place name you would like to find or press exit to quit");
+                               String placeName = sc.nextLine();
+                               if(placeName.equalsIgnoreCase("exit")){
+                                   System.out.println("Thank you bye :) ");
+                                   System.exit(0);
+                               }else {
+                                   placeNameArray.findPlaceName(placeName);
+                               }
 
-            }catch (Exception e){
-                System.out.println("Please enter correct file path");
-            }
-
+                           }
+                       }catch (Exception e){
+                           System.out.println("File not found.");
+                       }
+                   }
+               }
+           } else if (Integer.parseInt(input.trim()) == 2) {
+               System.out.println("Thank you bye :) ");
+               System.exit(0);
+           }else {
+               System.out.println("Please enter one of the options");
+               System.out.println();
+           }
         }
     }
 }

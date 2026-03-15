@@ -30,7 +30,7 @@ public class PlaceNameArray {
         int count = 0;
 
         for (ArrayList<String> innerList : nestedList) {
-            if (innerList.get(1).equals(target)) {
+            if (innerList.get(1).equalsIgnoreCase(target)) {
                 PlaceNameEntry entry = new PlaceNameEntry(Integer.parseInt(innerList.get(0)),innerList.get(1),innerList.get(2),Integer.parseInt(innerList.get(3)));
                 return new Data(true, count, entry);
             }
@@ -85,7 +85,6 @@ public class PlaceNameArray {
             }
         }
         catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -94,8 +93,10 @@ public class PlaceNameArray {
         if(record.found){
             System.out.println("Place name found");
             System.out.println("Id: " + Integer.toString(record.entry.getId()) + " Place Name: " + record.entry.getPlacename() + " Province: " + record.entry.getProvince() + " Population: " + Integer.toString(record.entry.getPopulation()));
+            System.out.println("Number of comparisons: " + Integer.toString(record.count));
         }else {
             System.out.println("Placename not found");
+            System.out.println("Would you like to try again");
         }
 
     }
