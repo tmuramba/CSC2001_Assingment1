@@ -29,7 +29,19 @@ public class PlaceSearchBST {
                                     System.out.println("Thank you bye :) ");
                                     System.exit(0);
                                 }else {
-                                    placeNameBST.findPlaceName(placeName.trim());
+                                    PlaceNameBST.Data record = placeNameBST.findPlaceName(placeName.trim());
+                                    if(record.found){
+                                        System.out.println("Place name found");
+                                        System.out.println("Id: " + Integer.toString(record.entry.getId()));
+                                        System.out.println("Place Name: " + record.entry.getPlacename());
+                                        System.out.println("Municipality: " + record.entry.getMunicipality());
+                                        System.out.println("Province: " + record.entry.getProvince());
+                                        System.out.println("Population: " + Integer.toString(record.entry.getPopulation()));
+                                        System.out.println("Number of comparisons: " + Integer.toString(record.count));
+                                    }else {
+                                        System.out.println("Placename not found");
+                                        System.out.println("Would you like to try again");
+                                    }
                                 }
 
                             }
