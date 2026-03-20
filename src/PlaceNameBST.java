@@ -88,7 +88,6 @@ public class PlaceNameBST {
 
     public void readCSV(){
         try (BufferedReader br = new BufferedReader(new FileReader(DataPath))) {
-            System.out.println("sucess");
             String line;
             int i = 0;
             if(n != 0){
